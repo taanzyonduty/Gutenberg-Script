@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "guten-clean"
+version = "0.1.0"
+authors = [
+  { name="Gemini", email="gemini@google.com" },
+]
+description = "A command-line tool to clean Project Gutenberg ebooks for LLM consumption."
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "beautifulsoup4",
+    "lxml",
+]
+
+[project.scripts]
+guten-clean = "guten_clean.main:main"
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+]
