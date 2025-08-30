@@ -1,0 +1,13 @@
+README.md
+pyproject.toml
+src/guten_clean/__init__.py
+src/guten_clean/cleaner.py
+src/guten_clean/epub_cleaner.py
+src/guten_clean/main.py
+src/guten_clean.egg-info/PKG-INFO
+src/guten_clean.egg-info/SOURCES.txt
+src/guten_clean.egg-info/dependency_links.txt
+src/guten_clean.egg-info/entry_points.txt
+src/guten_clean.egg-info/requires.txt
+src/guten_clean.egg-info/top_level.txt
+tests/test_guten_clean.py

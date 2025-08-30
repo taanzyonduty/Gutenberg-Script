@@ -1,0 +1,2 @@
+[console_scripts]
+guten-clean = guten_clean.main:main

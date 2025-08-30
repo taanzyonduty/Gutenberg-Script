@@ -4,12 +4,13 @@ def clean_ebook(text):
     """Clean an ebook text by removing the Project Gutenberg boilerplate."""
     text = remove_gutenberg_boilerplate(text)
     text = remove_copyright_and_notes(text)
+    text = remove_footnotes(text)
     return text
 
 def remove_copyright_and_notes(text):
     """Remove copyright, editor's notes, and other preamble from the text."""
     # List of regex patterns that often mark the end of the preamble.
-    # We will find the last occurrence of any of these.
+    # We will find the last occurrence of any of these within the first 5000 characters.
     end_of_preamble_markers = [
         r"All rights reserved",
         r"PRINTED IN THE UNITED STATES OF AMERICA",
@@ -19,10 +20,11 @@ def remove_copyright_and_notes(text):
     ]
 
     last_marker_pos = -1
+    search_area = text[:5000] # Only search in the first 5000 characters
 
     for marker in end_of_preamble_markers:
         # Find all matches for the current marker
-        matches = list(re.finditer(marker, text, re.IGNORECASE))
+        matches = list(re.finditer(marker, search_area, re.IGNORECASE))
         if matches:
             # Get the end position of the last match
             last_pos = matches[-1].end()
@@ -55,3 +57,14 @@ def remove_gutenberg_boilerplate(text):
         text = text[:end_match.start()]
 
     return text
+
+def remove_footnotes(text):
+    """Remove footnotes and any text that follows them."""
+    # Look for "Footnotes:" (case-insensitive)
+    match = re.search(r"Footnotes:", text, re.IGNORECASE)
+    if match:
+        # Return the text up to the start of "Footnotes:"
+        return text[:match.start()]
+    return text
+
+
